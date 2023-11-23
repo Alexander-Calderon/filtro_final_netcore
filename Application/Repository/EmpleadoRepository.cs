@@ -16,6 +16,20 @@ namespace Application.Repository
         // Consultas:
 
 
+        
+        public async Task<IEnumerable<object>> C9GetEmpleadosSinClientes()
+        {
+            return await _context.Empleados
+                .Where(e => !e.Clientes.Any())
+                .Select(e => new 
+                { 
+                    NombreEmpleado = e.Nombre, 
+                    ApellidoEmpleado = e.Apellido1,
+                    NombreJefe = e.CodigoJefeNavigation.Nombre,
+                    ApellidoJefe = e.CodigoJefeNavigation.Apellido1
+                })
+                .ToListAsync();
+        }
 
 
 

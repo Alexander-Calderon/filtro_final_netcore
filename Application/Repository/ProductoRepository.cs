@@ -64,16 +64,26 @@ namespace Application.Repository
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<object>> C7GetClientesYPedidos()
+        
+        public async Task<IEnumerable<object>> C10GetProductosNoPedidos()
         {
-            return await _context.Clientes
-                .Select(c => new 
-                {
-                    NombreCliente = c.NombreCliente,
-                    NumeroPedidos = c.Pedidos.Count
-                })
+            return await _context.Productos
+                .Where(p => !p.DetallePedidos.Any())
+                .Join(_context.GamaProductos,
+                    p => p.Gama,
+                    g => g.Gama,
+                    (p, g) => new 
+                    { 
+                        NombreProducto = p.Nombre, 
+                        Descripcion = p.Descripcion,
+                        Imagen = g.Imagen
+                    })
                 .ToListAsync();
         }
+
+        
+
+        
 
 
 

@@ -12,7 +12,7 @@ public interface IProducto : IGenericRepository<Producto>
     Task<IEnumerable<object>> C4GetTop20ProductosMasVendidos();
     Task<IEnumerable<object>> C5GetProductosFacturadosMasDe3000();
     Task<object> C6GetProductoMasVendido();
-    Task<IEnumerable<object>> C7GetClientesYPedidos();
+    Task<IEnumerable<object>> C10GetProductosNoPedidos();
     
 }
 

@@ -106,6 +106,23 @@ public class ClienteController : BaseApiController
         return Ok(clientes);
     }
 
+    [HttpGet("C7GetClientesYPedidos")]
+    public async Task<ActionResult<IEnumerable<object>>> C7GetClientesYPedidos()
+    {
+        var clientes = await _unitOfWork.Clientes.C7GetClientesYPedidos();
+        return Ok(clientes);
+    }
+
+    // En ClienteController.cs
+    [HttpGet("C8GetClientesRepresentantesYCiudad")]
+    public async Task<ActionResult<IEnumerable<object>>> C8GetClientesRepresentantesYCiudad()
+    {
+        var clientes = await _unitOfWork.Clientes.C8GetClientesRepresentantesYCiudad();
+        return Ok(clientes);
+    }
+
+    
+
     
 
 

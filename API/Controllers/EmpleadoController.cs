@@ -100,6 +100,13 @@ public class EmpleadoController : BaseApiController
     // CONSULTAS
 
     
+    [HttpGet("C9GetEmpleadosSinClientes")]
+    public async Task<ActionResult<IEnumerable<object>>> C9GetEmpleadosSinClientes()
+    {
+        var empleados = await _unitOfWork.Empleados.C9GetEmpleadosSinClientes();
+        return Ok(empleados);
+    }
+    
 
 
 }

@@ -29,9 +29,31 @@ namespace Application.Repository
         }
 
 
+        public async Task<IEnumerable<object>> C7GetClientesYPedidos()
+        {
+            return await _context.Clientes
+                .Select(c => new 
+                {
+                    NombreCliente = c.NombreCliente,
+                    NumeroPedidos = c.Pedidos.Count
+                })
+                .ToListAsync();
+        }
 
+        
 
-
+        public async Task<IEnumerable<object>> C8GetClientesRepresentantesYCiudad()
+        {
+            return await _context.Clientes
+                .Select(c => new 
+                { 
+                    NombreCliente = c.NombreCliente, 
+                    NombreRepresentante = c.CodigoEmpleadoRepVentasNavigation.Nombre,
+                    ApellidoRepresentante = c.CodigoEmpleadoRepVentasNavigation.Apellido1,
+                    CiudadOficina = c.CodigoEmpleadoRepVentasNavigation.CodigoOficinaNavigation.Ciudad
+                })
+                .ToListAsync();
+        }
 
 
     }

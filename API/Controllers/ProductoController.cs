@@ -120,12 +120,15 @@ public class ProductoController : BaseApiController
         return Ok(producto);
     }
 
-    [HttpGet("C7GetClientesYPedidos")]
-    public async Task<ActionResult<IEnumerable<object>>> C7GetClientesYPedidos()
+    
+    [HttpGet("C10GetProductosNoPedidos")]
+    public async Task<ActionResult<IEnumerable<object>>> GetProductosNoPedidos()
     {
-        var clientes = await _unitOfWork.Productos.C7GetClientesYPedidos();
-        return Ok(clientes);
+        var productos = await _unitOfWork.Productos.C10GetProductosNoPedidos();
+        return Ok(productos);
     }
+
+
 
 
 }
